@@ -15,7 +15,7 @@ class App extends React.Component {
 
     componentDidMount() {
         fetch('/prices?id=1')
-            .then((res) => {
+            .then((res) => res.json())
                     return res.json();
                 }
             )
