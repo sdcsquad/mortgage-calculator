@@ -3,15 +3,15 @@ const data = require('./fakeData');
 
 const insert = () => {
     data.forEach((el) => {
-        const sql = `INSERT INTO mortgage(home_price, property_tax, home_insurance, hoa_dues) VALUES(?, ?, ?, ?)`;
+        const sql = 'INSERT INTO mortgage(home_price, property_tax, home_insurance, hoa_dues) VALUES(?, ?, ?, ?)';
         db.query(sql, [el.home_price, el.property_tax, el.home_insurance, el.hoa_dues], (err, res) =>{
-            if(err){
+            if (err) {
                 console.log(err);
-            }else{
+            } else {
                 console.log(res);
             }
-        })
-    })
+        });
+    });
 };
 
 insert();

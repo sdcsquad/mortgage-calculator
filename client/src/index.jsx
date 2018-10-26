@@ -1,28 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Form from './components/Form.jsx';
-import Analytics from './components/Analytics.jsx';
+import SubSection from './components/SubSection.jsx';
+import MortgageSection from './components/MortgageSection.jsx';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentProperty: {
-                home_price: 0,
-                down_payment: 0,
-                loan_program: 0,
-                interest_rate: 0,
-                private_mortgage_insurance: 0,
-                taxes_and_insurance: 0,
-                property_tax: 0,
-                home_insurance: 0,
-                hoa_dues: 0
-            },
-            checked: {
-                pmiChecked: true,
-                taxInsuranceChecked: true
-            }
-        }
+            currentProperty: {},
+            open: false
+        };
+        this.handleCollapse = this.handleCollapse.bind(this);
     }
 
     componentDidMount() {
@@ -41,20 +29,20 @@ class App extends React.Component {
             })
     }
 
-    render() {
-        console.log(this.state.currentProperty);
-        return (
-            <table>
-                <thead>
-                <tr>
-                    <td><Form item={this.state.currentProperty} check={this.state.pmiChecked}/></td>
-                    <td><Analytics/></td>
-                </tr>
-                </thead>
-
-            </table>
-        )
+    handleCollapse() {
+        this.setState({
+            open: !this.state.open
+        });
     }
+
+    render() {
+        return (
+            <div>
+                <MortgageSection onClick={this.handleCollapse}/>
+                {this.state.open === true ? <SubSection item={this.state.currentProperty}/> : null}
+            </div>
+        );
+    };
 }
 
 ReactDOM.render(<App/>, document.getElementById('app'));

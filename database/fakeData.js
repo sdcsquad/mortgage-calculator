@@ -1,10 +1,8 @@
 const faker = require('faker');
-
 const data = [];
 
 var fakeDataGenerator = () => {
-    for(var i = 0; i < 100; i++)
-    {
+    for (var i = 0; i < 100; i++) {
         let dataObj = {};
         dataObj.home_price = faker.random.number({'min': 200000, 'max': 1500000});
         dataObj.property_tax = faker.random.number({'min': 1000, 'max': 5000});

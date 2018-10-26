@@ -1,56 +1,17 @@
 body{
     font-size: 14px;
-}
-
-.app{
+    font-family: "Open Sans", sans-serif;
     width: 100%;
 }
-
-table{
-    width: 50%;
-}
-
-td{
-    width: 50%;
-}
-.form{
-    color : #444;
-    width: 100%
-}
-
-.form label{
-    font-family: "Open Sans", sans-serif;
-    font-size: 1em;
+.collapsible {
+    background-color: #ffffff;
     color: #444;
-    display: block;
-}
-
-.form input{
-    display: block;
-}
-
-.check{
-    display: block;
-}
-
-.form input[type="checkbox"]{
-    display: inline-block;
-}
-
-.form .inline{
-    display: inline-block;
-}
-
-.form label span{
-    display: block;
-}
-
-.box{
-    width: 20%;
-}
-
-.analytics{
-    height: 100%;
-    position: absolute;
-    top: 0;
+    cursor: pointer;
+    padding: 18px;
+    width: 50%;
+    border: none;
+    border-bottom: 1px solid #cccccc;
+    text-align: left;
+    outline: none;
+    font-size: 1.5em;
 }
