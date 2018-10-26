@@ -22,9 +22,7 @@ class App extends React.Component {
                     currentProperty: res[0]
                 })
             })
-            .catch((err) => {
-                console.log(err);
-            })
+            .catch((err) => console.log(err))
     }
 
     toggleClass(){
@@ -41,7 +39,7 @@ class App extends React.Component {
     handleCollapse() {
         this.setState({
             open: !this.state.open
-        }, ()=>{this.toggleClass()});
+        }, ()=> this.toggleClass());
     }
 
     render() {
