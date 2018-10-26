@@ -3,15 +3,36 @@ body{
     font-family: "Open Sans", sans-serif;
     width: 100%;
 }
+
+.app{
+    width: 100%;
+}
+
+.inner{
+    width: 50%;
+    margin: auto;
+}
+
+.title{
+    border-bottom: 1px solid #cccccc;
+    padding: 5px;
+    cursor: pointer;
+}
+
 .collapsible {
     background-color: #ffffff;
     color: #444;
-    cursor: pointer;
-    padding: 18px;
+    padding: 4px;
     width: 50%;
     border: none;
-    border-bottom: 1px solid #cccccc;
     text-align: left;
     outline: none;
     font-size: 1.5em;
+}
+
+#icon-angle{
+    float : right;
+    padding: 4px;
+    font-size: 1.5em;
+    color: #444;
 }
