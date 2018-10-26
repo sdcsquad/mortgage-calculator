@@ -11,14 +11,12 @@ class App extends React.Component {
             open: false
         };
         this.handleCollapse = this.handleCollapse.bind(this);
+        this.toggleClass = this.toggleClass.bind(this);
     }
 
     componentDidMount() {
         fetch('/prices?id=1')
-            .then((res) => {
-                    return res.json();
-                }
-            )
+            .then((res) => res.json())
             .then((res) => {
                 this.setState({
                     currentProperty: res[0]
@@ -29,15 +27,26 @@ class App extends React.Component {
             })
     }
 
+    toggleClass(){
+        let item = document.getElementsByClassName('fas');
+        if(this.state.open === true) {
+            item[0].classList.remove('fa-angle-up');
+            item[0].classList.add("fa-angle-down");
+        }else{
+            item[0].classList.add('fa-angle-up');
+            item[0].classList.remove("fa-angle-down");
+        }
+    }
+
     handleCollapse() {
         this.setState({
             open: !this.state.open
-        });
+        }, ()=>{this.toggleClass()});
     }
 
     render() {
         return (
-            <div>
+            <div className="inner">
                 <MortgageSection onClick={this.handleCollapse}/>
                 {this.state.open === true ? <SubSection item={this.state.currentProperty}/> : null}
             </div>
