@@ -12,8 +12,8 @@ app.listen(port, () => {
     console.log(`listening at ${port}`);
 });
 
-app.get('/prices', (req, res) => {
-        let id = req.query.id;
+app.get('/api/homes/:id/prices', (req, res) => {
+        let id = req.params.id;
         db.retrieve(id, (err, data) => {
             if (err) {
                 res.end(err);
