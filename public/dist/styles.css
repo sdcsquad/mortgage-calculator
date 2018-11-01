@@ -59,34 +59,34 @@ body{
     margin: 4px 0 15px 0;
 }
 
-.form input[type = 'checkbox']{
-    display: inline-block;
-    width: 13px;
-    height: 13px;
-    padding: 0;
-    margin:0;
-    vertical-align: bottom;
-    position: relative;
-    top: -1px;
-    *overflow: hidden;
-    cursor: pointer;
-    outline: 1px solid #444;
-    -moz-appearance:none;
-    -webkit-appearance:none;
-    -o-appearance:none;
-}
+/*.form input[type = 'checkbox']{*/
+    /*display: inline-block;*/
+    /*width: 13px;*/
+    /*height: 13px;*/
+    /*padding: 0;*/
+    /*margin: 0 4px 0 0;*/
+    /*vertical-align: bottom;*/
+    /*position: relative;*/
+    /*top: -1px;*/
+    /**overflow: hidden;*/
+    /*cursor: pointer;*/
+    /*outline: 1px solid #444;*/
+    /*-moz-appearance:none;*/
+    /*-webkit-appearance:none;*/
+    /*-o-appearance:none;*/
+/*}*/
 
-.form input[type = 'checkbox']:hover{
-    outline: 1px solid #0074e4;
-}
+/*.form input[type = 'checkbox']:hover{*/
+    /*outline: 1px solid #0074e4;*/
+/*}*/
 
-.form input[type='checkbox']:checked:after {
-    content: "\2713";
-    color: #444;
-    text-align: center;
-    position: absolute;
-    left: 2px;
-}
+/*.form input[type='checkbox']:checked{*/
+    /*content: "\2713";*/
+    /*color: #444;*/
+    /*text-align: center;*/
+    /*!*position: absolute;*!*/
+    /*!*left: 2px;*!*/
+/*}*/
 
 .form .check{
     display: inline-block;
@@ -129,9 +129,9 @@ body{
     display: inline-block;
 }
 
-.check-input{
-    cursor: pointer;
-}
+/*.check-input{*/
+    /*cursor: pointer;*/
+/*}*/
 
 .double-input a{
     margin-left: 20px;

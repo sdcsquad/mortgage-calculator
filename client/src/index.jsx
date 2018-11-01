@@ -11,6 +11,7 @@ class App extends React.Component {
       payments: {},
       open: false,
       popUpStatus: false,
+      isChecked: true
     };
     this.handleCollapse = this.handleCollapse.bind(this);
     this.toggleClass = this.toggleClass.bind(this);
@@ -159,7 +160,7 @@ class App extends React.Component {
         {this.state.open === true ?
           <SubSection item={this.state.currentValues} payments={this.state.payments}
                       onChangeHandler={this.handleChange}
-                      onClick={this.handlePopUp}/> : null}
+                      onClick={this.handlePopUp} /> : null}
       </div>
     );
   }
