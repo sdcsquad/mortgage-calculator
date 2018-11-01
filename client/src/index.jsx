@@ -9,9 +9,10 @@ class App extends React.Component {
     this.state = {
       currentValues: {},
       payments: {},
+      paymentsPercentage:{},
       open: false,
       popUpStatus: false,
-      isChecked: true
+      checked: false
     };
     this.handleCollapse = this.handleCollapse.bind(this);
     this.toggleClass = this.toggleClass.bind(this);
@@ -19,6 +20,7 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handlePopUp = this.handlePopUp.bind(this);
     this.formatCurrency = this.formatCurrency.bind(this);
+    this.handleCheckbox = this.handleCheckbox.bind(this);
   }
 
   componentDidMount() {
@@ -73,10 +75,24 @@ class App extends React.Component {
       taxes: this.state.currentValues.property_tax,
       PMI: 0,
       HOA: this.state.currentValues.hoa_dues,
-      monthlyPayment,
+      monthlyPayment : monthlyPayment
+    };
+
+    const PIPercentage = Math.round((firstYearPandI/monthlyPayment)*100);
+    const insurancePercentage = Math.round((this.state.currentValues.home_insurance/monthlyPayment)*100);
+    const taxes = Math.round((this.state.currentValues.property_tax/monthlyPayment)*100);
+    const HOA = Math.round((this.state.currentValues.hoa_dues/monthlyPayment)*100);
+
+    const paymentPercentageObj ={
+      PI: PIPercentage,
+      insurance: insurancePercentage,
+      taxes: taxes,
+      PMI: 0,
+      HOA: HOA,
     };
     this.setState({
       payments: paymentObj,
+      paymentsPercentage: paymentPercentageObj
     }, () => {
       this.formatCurrency();
     });
@@ -92,7 +108,7 @@ class App extends React.Component {
       });
     }
     this.setState({
-      payments,
+      payments : payments
     });
   }
 
@@ -153,14 +169,22 @@ class App extends React.Component {
     });
   }
 
+  handleCheckbox(e){
+    // console.log(e.target.id);
+    this.setState({
+      checked: !this.state.checked
+    });
+  }
+
   render() {
     return (
       <div className="inner">
         <MortgageSection onClick={this.handleCollapse}/>
+
         {this.state.open === true ?
-          <SubSection item={this.state.currentValues} payments={this.state.payments}
+          <SubSection items={this.state.currentValues} payments={this.state.payments} paymentsPercentage={this.state.paymentsPercentage}
                       onChangeHandler={this.handleChange}
-                      onClick={this.handlePopUp} /> : null}
+                      onClick={this.handlePopUp} checked={this.state.checked} onCheckHandler={this.handleCheckbox}/> : null}
       </div>
     );
   }

@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Form = props => (
+const Form = props => {
+  console.log(props.checked);
+  return(
     <form className="form">
       <label>
         Home price
@@ -28,7 +30,7 @@ const Form = props => (
       </label>
       <div className="checkboxDiv">
         <label className="check">
-          <input type="checkbox" checked />
+          <input type="checkbox" checked={props.checked} onChange={props.onCheckHandler} id="pmi-check"/>
           <span className="check-input">Include PMI</span>
         </label>
         <a className="help" onClick={props.onClick}>
@@ -43,7 +45,7 @@ const Form = props => (
       <div className="checkboxDiv">
         <label className="check">
         <span className="check-input">
-          <input type="checkbox" checked/>
+          <input type="checkbox"/>
           Include taxes/insurance
         </span>
         </label>
@@ -93,6 +95,7 @@ const Form = props => (
                onChange={props.onChangeHandler} className="input"/>
       </label>
     </form>
-);
+  );
+}
 
 export default Form;
