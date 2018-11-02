@@ -12,7 +12,11 @@ class App extends React.Component {
       paymentsPercentage:{},
       open: false,
       popUpStatus: false,
-      checked: false
+      checked:{
+        pmiChecked: true,
+        taxesChecked: true,
+      },
+      selected: '30-year fixed'
     };
     this.handleCollapse = this.handleCollapse.bind(this);
     this.toggleClass = this.toggleClass.bind(this);
@@ -21,31 +25,20 @@ class App extends React.Component {
     this.handlePopUp = this.handlePopUp.bind(this);
     this.formatCurrency = this.formatCurrency.bind(this);
     this.handleCheckbox = this.handleCheckbox.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
   componentDidMount() {
-    document.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (this.state.popUpStatus === true && (!e.target.id || e.target.id !== 'help1' && e.target.id !== 'help2' && e.target.id !== 'help3' && e.target.id !== 'help4')) {
-        this.setState({
-          popUpStatus: false,
-        }, () => {
-          const popUp = document.getElementsByClassName('popuptext');
-          for (let i = 0; i < popUp.length; i++) {
-            popUp[i].classList.remove('show');
-          }
-        });
-      }
-    });
     const id = 2;
     fetch(`/api/homes/${id}/prices`)
       .then(res => res.json())
       .then((res) => {
-        res[0].loan_program = '30-year fixed';
         res[0].down_payment_percentage = 20;
         res[0].property_tax_percentage = ((res[0].property_tax / res[0].home_price) * 100).toFixed(2);
         res[0].down_payment_amount = Math.floor(res[0].home_price * res[0].down_payment_percentage / 100);
         res[0].interest_rate = 4.5;
+        res[0].years = 30;
+        res[0].PMI = 0;
         this.setState({
           currentValues: res[0],
         }, () => {
@@ -56,38 +49,54 @@ class App extends React.Component {
   }
 
   calculatePayments() {
-    const homePrice = this.state.currentValues.home_price;
-    const propertyTax = this.state.currentValues.property_tax;
-    const homeInsurance = this.state.currentValues.home_insurance;
-    const hoaDues = this.state.currentValues.hoa_dues;
-    const downPaymentAmount = this.state.currentValues.down_payment_amount;
-    const interestRate = this.state.currentValues.interest_rate;
+    let homePrice = this.state.currentValues.home_price;
+    let propertyTax = this.state.currentValues.property_tax;
+    let homeInsurance = this.state.currentValues.home_insurance;
+    let hoaDues = this.state.currentValues.hoa_dues;
+    let downPaymentAmount = this.state.currentValues.down_payment_amount;
+    let interestRate = this.state.currentValues.interest_rate;
+    let years = this.state.currentValues.years;
+    let downPaymentPercentage = this.state.currentValues.down_payment_percentage;
 
-    const loanAmount = homePrice - downPaymentAmount;
-    const firstMonthPrincipal = Math.floor((loanAmount * 1.2 / 100) / 12);
-    const firstMonthInterest = Math.floor((loanAmount * interestRate / 100) / 12);
-    const firstYearPandI = firstMonthPrincipal + firstMonthInterest;
-    const monthlyPayment = firstYearPandI + propertyTax + homeInsurance + hoaDues;
+    let loanAmount = homePrice - downPaymentAmount;
+    let perMonthInterest = interestRate/1200;
+    let numberOfPayments = years * 12;
+    let monthlyPandI = loanAmount*(perMonthInterest*(Math.pow((1+perMonthInterest),numberOfPayments)))/ (Math.pow((1+perMonthInterest), numberOfPayments)-1);
+    let roundedMonthlyPandI = Math.round(monthlyPandI);
+    let newPMI = 0;
+
+    if(downPaymentPercentage < 20 && this.state.checked.pmiChecked){
+      const pmiPrice = 50;
+      newPMI = Math.round(loanAmount/100000)*pmiPrice;
+    }
+
+    let monthlyPayment = roundedMonthlyPandI+ propertyTax + homeInsurance + hoaDues + newPMI;
+    let PIPercentage = Math.round((roundedMonthlyPandI/monthlyPayment)*100);
+    let pmiPercentage = Math.round((newPMI/monthlyPayment)*100);
+    let HOA = Math.round((this.state.currentValues.hoa_dues/monthlyPayment)*100);
+    let insurancePercentage = Math.round((this.state.currentValues.home_insurance/monthlyPayment)*100);
+    let taxes = Math.round((this.state.currentValues.property_tax/monthlyPayment)*100);
+
+    if(!this.state.checked.taxesChecked){
+      monthlyPayment = roundedMonthlyPandI + hoaDues + newPMI;
+      insurancePercentage = 0;
+      taxes = 0;
+    }
 
     const paymentObj = {
-      PI: firstYearPandI,
+      PI: roundedMonthlyPandI,
       insurance: this.state.currentValues.home_insurance,
       taxes: this.state.currentValues.property_tax,
-      PMI: 0,
+      PMI: newPMI,
       HOA: this.state.currentValues.hoa_dues,
       monthlyPayment : monthlyPayment
     };
-
-    const PIPercentage = Math.round((firstYearPandI/monthlyPayment)*100);
-    const insurancePercentage = Math.round((this.state.currentValues.home_insurance/monthlyPayment)*100);
-    const taxes = Math.round((this.state.currentValues.property_tax/monthlyPayment)*100);
-    const HOA = Math.round((this.state.currentValues.hoa_dues/monthlyPayment)*100);
 
     const paymentPercentageObj ={
       PI: PIPercentage,
       insurance: insurancePercentage,
       taxes: taxes,
-      PMI: 0,
+      PMI: pmiPercentage,
       HOA: HOA,
     };
     this.setState({
@@ -169,22 +178,42 @@ class App extends React.Component {
     });
   }
 
-  handleCheckbox(e){
-    // console.log(e.target.id);
+  handleSelectChange(e){
+    let currentValues = Object.assign({}, this.state.currentValues);
+    if(e.target.value === "15-year fixed"){
+      currentValues.years= 15
+    }else if(e.target.value === "30-year fixed"){
+      currentValues.years= 30
+    }else{
+      currentValues.years= 25
+    }
     this.setState({
-      checked: !this.state.checked
-    });
+      selected : e.target.selected,
+      currentValues : currentValues
+    }, () => this.calculatePayments());
+  }
+
+  handleCheckbox(e){
+    const checkedEl = e.target.id;
+    const checked = Object.assign({}, this.state.checked);
+    if(checkedEl === 'pmi-check'){
+        checked.pmiChecked= !checked.pmiChecked
+    }else{
+        checked.taxesChecked= !checked.taxesChecked
+    }
+    this.setState({
+      checked : checked
+    }, ()=> this.calculatePayments());
   }
 
   render() {
     return (
       <div className="inner">
         <MortgageSection onClick={this.handleCollapse}/>
-
         {this.state.open === true ?
           <SubSection items={this.state.currentValues} payments={this.state.payments} paymentsPercentage={this.state.paymentsPercentage}
                       onChangeHandler={this.handleChange}
-                      onClick={this.handlePopUp} checked={this.state.checked} onCheckHandler={this.handleCheckbox}/> : null}
+                      onClick={this.handlePopUp} selectedValue={this.state.selected} onSelectChange={this.handleSelectChange} checked={this.state.checked} onCheckHandler={this.handleCheckbox}/> : null}
       </div>
     );
   }
