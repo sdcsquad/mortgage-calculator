@@ -16,7 +16,7 @@ class App extends React.Component {
         pmiChecked: true,
         taxesChecked: true,
       },
-      selected: '30-year fixed'
+      selected: '30-year fixed',
     };
     this.handleCollapse = this.handleCollapse.bind(this);
     this.toggleClass = this.toggleClass.bind(this);
@@ -63,15 +63,15 @@ class App extends React.Component {
     let numberOfPayments = years * 12;
     let monthlyPandI = 0;
 
-    if(interestRate > 0) {
+    if (interestRate > 0) {
       monthlyPandI = loanAmount * (perMonthInterest * (Math.pow((1 + perMonthInterest), numberOfPayments))) / (Math.pow((1 + perMonthInterest), numberOfPayments) - 1);
-    }else{
+    } else {
       monthlyPandI = loanAmount/numberOfPayments;
     }
     let roundedMonthlyPandI = Math.round(monthlyPandI);
     let newPMI = 0;
 
-    if(downPaymentPercentage < 20 && this.state.checked.pmiChecked){
+    if (downPaymentPercentage < 20 && this.state.checked.pmiChecked) {
       const pmiPrice = 50;
       newPMI = Math.round(loanAmount/100000)*pmiPrice;
     }
@@ -83,7 +83,7 @@ class App extends React.Component {
     let insurancePercentage = Math.round((homeInsurance/monthlyPayment)*100);
     let taxes = Math.round((propertyTax/monthlyPayment)*100);
 
-    if(!this.state.checked.taxesChecked){
+    if (!this.state.checked.taxesChecked) {
       monthlyPayment = roundedMonthlyPandI + hoaDues + newPMI;
       insurancePercentage = 0;
       taxes = 0;
@@ -95,10 +95,10 @@ class App extends React.Component {
       taxes: propertyTax,
       PMI: newPMI,
       HOA: this.state.currentValues.hoa_dues,
-      monthlyPayment : monthlyPayment
+      monthlyPayment : monthlyPayment,
     };
 
-    const paymentPercentageObj ={
+    const paymentPercentageObj = {
       PI: PIPercentage,
       insurance: insurancePercentage,
       taxes: taxes,
@@ -149,7 +149,7 @@ class App extends React.Component {
     let targetValue = e.target.value;
     const currentValues = Object.assign({}, this.state.currentValues);
 
-    if(targetValue === ''){
+    if (targetValue === '') {
       targetValue = 0;
     }
 
@@ -157,25 +157,25 @@ class App extends React.Component {
       targetValue = parseFloat(targetValue);
     }
 
-    if(targetValue.toString().length > 9){
+    if (targetValue.toString().length > 9) {
       targetValue = 0;
       alert('invalid input');
     }
 
-    if(targetName !== 'home_price' &&  targetValue > this.state.currentValues.home_price){
+    if (targetName !== 'home_price' &&  targetValue > this.state.currentValues.home_price) {
       targetValue = 0;
       alert('invalid input');
     }
 
-    if(targetName === 'home_price'){
+    if (targetName === 'home_price') {
       currentValues.down_payment_amount = Math.floor(targetValue*(this.state.currentValues.down_payment_percentage/100));
     }
     if (targetName === 'down_payment_percentage') {
         currentValues.down_payment_amount = Math.floor(this.state.currentValues.home_price * targetValue / 100);
     } else if (targetName === 'down_payment_amount') {
-      if(currentValues.down_payment_amount = 0){
+      if (currentValues.down_payment_amount = 0){
         currentValues.down_payment_percentage = 0;
-      }else{
+      } else {
         currentValues.down_payment_percentage = ((targetValue / this.state.currentValues.home_price) * 100).toFixed(0);
       }
     } else if (targetName === 'property_tax') {
@@ -205,13 +205,13 @@ class App extends React.Component {
     });
   }
 
-  handleSelectChange(e){
+  handleSelectChange(e) {
     let currentValues = Object.assign({}, this.state.currentValues);
-    if(e.target.value === "15-year fixed"){
+    if (e.target.value === "15-year fixed") {
       currentValues.years= 15
-    }else if(e.target.value === "30-year fixed"){
+    } else if (e.target.value === "30-year fixed") {
       currentValues.years= 30
-    }else{
+    } else {
       currentValues.years= 25
     }
     this.setState({
@@ -220,12 +220,12 @@ class App extends React.Component {
     }, () => this.calculatePayments());
   }
 
-  handleCheckbox(e){
+  handleCheckbox(e) {
     const checkedEl = e.target.id;
     const checked = Object.assign({}, this.state.checked);
-    if(checkedEl === 'pmi-check'){
+    if (checkedEl === 'pmi-check') {
         checked.pmiChecked= !checked.pmiChecked
-    }else{
+    } else {
         checked.taxesChecked= !checked.taxesChecked
     }
     this.setState({

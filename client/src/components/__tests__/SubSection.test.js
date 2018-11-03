@@ -16,7 +16,7 @@ describe('SubSection tests', () => {
     property_tax: 300,
     property_tax_percentage: 2,
     home_insurance: 100,
-    hoa_dues: 30
+    hoa_dues: 30,
   };
 
   const payments = {
@@ -25,7 +25,7 @@ describe('SubSection tests', () => {
     taxes: 341,
     PMI: 0,
     HOA: 450,
-    monthlyPayment : 2500
+    monthlyPayment : 2500,
   };
 
   const checked = {
@@ -38,7 +38,7 @@ describe('SubSection tests', () => {
     insurance: 44,
     taxes: 341,
     PMI: 0,
-    HOA: 450
+    HOA: 450,
   };
 
   const monthlyPayment = 2500;
