@@ -1,16 +1,15 @@
 body{
     font-size: 14px;
     font-family: "Open Sans", sans-serif;
-    width: 100%;
 }
 
-.app{
+#app{
     width: 100%;
 }
 
 .inner{
     width: 50%;
-    margin: auto;
+    margin: 0 auto;
     position: relative;
 }
 
@@ -38,52 +37,82 @@ body{
     color: #444;
 }
 
+/*.grid-container {*/
+    /*display: grid;*/
+    /*grid-template-columns: auto auto;*/
+    /*padding: 10px;*/
+    /*position: absolute;*/
+    /*margin: auto;*/
+    /*width: 100%;*/
+/*}*/
+
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto;
-    padding: 10px;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
+    padding-top: 10px;
     position: absolute;
     margin: auto;
+    width: 100%;
+    min-width:625px;
 }
 
-/*.list{*/
-    /*width: 100%;*/
-    /*margin: 0 auto;*/
-/*}*/
+.grid-item{
+    width: 100%;
+    min-width: 312px;
+}
+
+.grid-item-sm{
+    width: 100%;
+    min-width: 155px;
+}
 
 .grid-item ul {
    line-height: 1.5em;
     padding: 0 20px 0;
+    max-width: 200px;
 }
 
 .sub-grid-container {
     display: grid;
     grid-template-columns: auto auto;
+    padding: 10px;
+    margin: auto;
+    width: 100%;
+    overflow: hidden;
 }
 
 .form{
     color: #444;
     width: 100%;
-    padding-top: 10px;
+    padding: 10px;
 }
 
 .input{
-    display: block;
+    display: inline-block;
     height: 20px;
-    margin: 4px 0 15px 0;
-    padding: 0;
+    padding: 2px;
     color: #444;
-    width: 95%;
+    width: 94%;
 }
+
+.input-md{
+    display: inline-block;
+    height: 20px;
+    padding: 2px;
+    color: #444;
+    width: 82%;
+}
+
 
 .select-input{
     display: block;
     color: #444;
     background: transparent;
-    height: 25px;
+    height: 30px;
     margin: 4px 0 15px 0;
     padding: 0;
-    width: 96%;
+    width: 100%;
 }
 
 .form input[type = 'checkbox']{
@@ -126,24 +155,53 @@ body{
     margin: 4px 0 15px 0;
 }
 
-.input-lg{
-    display: inline-block;
+.amount-input{
+    display: block;
+    box-shadow:0 0 0 1px rgba(68, 68, 68, 0.5);
+    padding: 2px;
     margin: 4px 0 15px 0;
-    padding: 0;
-    width: 70%;
-    height: 20px;
     color: #444;
-    float: left;
+}
+.amount-input input {
+    border: 0;
+}
+
+.lg-sm-input{
+    margin: 4px 0 15px 0;
+}
+
+.double-amount-input-lg{
+    display: inline-block;
+    box-shadow:0 0 0 1px rgba(68, 68, 68, 0.5);
+    padding: 2px;
+    color: #444;
+    /*width: 348px;*/
+    width: 300px;
+}
+
+.double-amount-input-sm{
+    display: inline-block;
+    box-shadow:0 0 0 1px rgba(68, 68, 68, 0.5);
+    padding: 2px;
+    color: #444;
+    /*width: 140px;*/
+    width: 150px;
 }
 
 .input-sm{
-    display: inline-block;
-    margin: 4px 0 15px 0;
-    padding: 0;
-    width: 24%;
+    width: 85%;
+    border: 0;
+    padding: 2px;
     height: 20px;
     color: #444;
-    float: left;
+}
+
+.input-lg{
+    width: 85%;
+    border: 0;
+    padding: 2px;
+    height: 20px;
+    color: #444;
 }
 
 .form label{
@@ -278,7 +336,7 @@ body{
 }
 
 .chart-number {
-    font-size: 0.2em;
+    font-size: 0.4em;
     text-transform: uppercase;
     text-anchor: middle;
     -moz-transform: translateY(0.7em);
@@ -288,13 +346,14 @@ body{
 }
 
 .qualified-button {
+    display: block;
     background-color: #0074e4;
     color: #fff;
     border-radius: 5px;
     border: none;
-    width: 100%;
+    width: 80%;
     height: 40px;
-    margin: 0 20px 0;
+    margin: 0 auto;
 }
 
 .qualified-button:hover{
@@ -302,4 +361,19 @@ body{
     background: linear-gradient(to top,#0074e4,#1b5098);
     background-repeat; repeat-x;
     color: #fff;
+}
+
+.amount-input span{
+    float: right;
+    padding: 4px;
+}
+
+.rate-link{
+    float: right;
+    text-decoration: none;
+    color: #0074e4;
+}
+
+.rate-link:hover{
+    color: #62aef7;
 }

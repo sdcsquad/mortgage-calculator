@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PaymentList = props => (
-  <div className="grid-item list">
+  <div className="list">
     <ul>
       <li>
         <div className="circle ci-1"/>

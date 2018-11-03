@@ -5,7 +5,6 @@ const Chart = props => (
     <circle className="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"/>
     <circle className="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent"
             stroke="#d9f0f9" strokeWidth="3"/>
-
     <circle className="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent"
             stroke="#0074e4" strokeWidth="3"
             strokeDasharray={props.items.PI + " " + (100 - props.items.PI)}

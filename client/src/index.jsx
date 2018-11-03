@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const id = 2;
+    const id = 1;
     fetch(`/api/homes/${id}/prices`)
       .then(res => res.json())
       .then((res) => {
@@ -50,8 +50,8 @@ class App extends React.Component {
 
   calculatePayments() {
     let homePrice = this.state.currentValues.home_price;
-    let propertyTax = this.state.currentValues.property_tax;
-    let homeInsurance = this.state.currentValues.home_insurance;
+    let propertyTax = Math.round(this.state.currentValues.property_tax/12);
+    let homeInsurance = Math.round(this.state.currentValues.home_insurance/12);
     let hoaDues = this.state.currentValues.hoa_dues;
     let downPaymentAmount = this.state.currentValues.down_payment_amount;
     let interestRate = this.state.currentValues.interest_rate;
@@ -61,7 +61,13 @@ class App extends React.Component {
     let loanAmount = homePrice - downPaymentAmount;
     let perMonthInterest = interestRate/1200;
     let numberOfPayments = years * 12;
-    let monthlyPandI = loanAmount*(perMonthInterest*(Math.pow((1+perMonthInterest),numberOfPayments)))/ (Math.pow((1+perMonthInterest), numberOfPayments)-1);
+    let monthlyPandI = 0;
+
+    if(interestRate > 0) {
+      monthlyPandI = loanAmount * (perMonthInterest * (Math.pow((1 + perMonthInterest), numberOfPayments))) / (Math.pow((1 + perMonthInterest), numberOfPayments) - 1);
+    }else{
+      monthlyPandI = loanAmount/numberOfPayments;
+    }
     let roundedMonthlyPandI = Math.round(monthlyPandI);
     let newPMI = 0;
 
@@ -74,8 +80,8 @@ class App extends React.Component {
     let PIPercentage = Math.round((roundedMonthlyPandI/monthlyPayment)*100);
     let pmiPercentage = Math.round((newPMI/monthlyPayment)*100);
     let HOA = Math.round((this.state.currentValues.hoa_dues/monthlyPayment)*100);
-    let insurancePercentage = Math.round((this.state.currentValues.home_insurance/monthlyPayment)*100);
-    let taxes = Math.round((this.state.currentValues.property_tax/monthlyPayment)*100);
+    let insurancePercentage = Math.round((homeInsurance/monthlyPayment)*100);
+    let taxes = Math.round((propertyTax/monthlyPayment)*100);
 
     if(!this.state.checked.taxesChecked){
       monthlyPayment = roundedMonthlyPandI + hoaDues + newPMI;
@@ -85,8 +91,8 @@ class App extends React.Component {
 
     const paymentObj = {
       PI: roundedMonthlyPandI,
-      insurance: this.state.currentValues.home_insurance,
-      taxes: this.state.currentValues.property_tax,
+      insurance: homeInsurance,
+      taxes: propertyTax,
       PMI: newPMI,
       HOA: this.state.currentValues.hoa_dues,
       monthlyPayment : monthlyPayment
@@ -117,7 +123,7 @@ class App extends React.Component {
       });
     }
     this.setState({
-      payments : payments
+      payments: payments
     });
   }
 
@@ -143,18 +149,39 @@ class App extends React.Component {
     let targetValue = e.target.value;
     const currentValues = Object.assign({}, this.state.currentValues);
 
+    if(targetValue === ''){
+      targetValue = 0;
+    }
+
     if (targetName !== 'loan_program') {
       targetValue = parseFloat(targetValue);
     }
 
+    if(targetValue.toString().length > 9){
+      targetValue = 0;
+      alert('invalid input');
+    }
+
+    if(targetName !== 'home_price' &&  targetValue > this.state.currentValues.home_price){
+      targetValue = 0;
+      alert('invalid input');
+    }
+
+    if(targetName === 'home_price'){
+      currentValues.down_payment_amount = Math.floor(targetValue*(this.state.currentValues.down_payment_percentage/100));
+    }
     if (targetName === 'down_payment_percentage') {
-      currentValues.down_payment_amount = Math.floor(this.state.currentValues.home_price * targetValue / 100);
+        currentValues.down_payment_amount = Math.floor(this.state.currentValues.home_price * targetValue / 100);
     } else if (targetName === 'down_payment_amount') {
-      currentValues.down_payment_percentage = ((targetValue / this.state.currentValues.home_price) * 100).toFixed(0);
+      if(currentValues.down_payment_amount = 0){
+        currentValues.down_payment_percentage = 0;
+      }else{
+        currentValues.down_payment_percentage = ((targetValue / this.state.currentValues.home_price) * 100).toFixed(0);
+      }
     } else if (targetName === 'property_tax') {
-      currentValues.property_tax_percentage = ((targetValue / this.state.currentValues.home_price) * 100).toFixed(2);
+        currentValues.property_tax_percentage = ((targetValue / this.state.currentValues.home_price) * 100).toFixed(2);
     } else if (targetName === 'property_tax_percentage') {
-      currentValues.property_tax = Math.floor(this.state.currentValues.home_price * targetValue / 100);
+        currentValues.property_tax = Math.floor(this.state.currentValues.home_price * targetValue / 100);
     }
     currentValues[targetName] = targetValue;
     this.setState({

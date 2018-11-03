@@ -11,10 +11,10 @@ const SubSection = props => (
     </div>
     <div className="grid-item">
       <div className="sub-grid-container">
-        <div className="grid-item">
+        <div className="grid-item-sm">
           <PaymentList items={props.payments} checked={props.checked}/>
         </div>
-        <div className="grid-item">
+        <div className="grid-item-sm">
           <Chart items={props.paymentsPercentage} monthlyPayment={props.payments.monthlyPayment} checked={props.checked}/>
         </div>
       </div>
