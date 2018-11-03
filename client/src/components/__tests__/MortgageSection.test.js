@@ -18,4 +18,5 @@ describe('Mortgage Component tests', () => {
     button.find('div.title').simulate('click');
     expect(mockCallBack.mock.calls.length).toEqual(1);
   });
+
 });

@@ -1,16 +1,16 @@
 body{
     font-size: 14px;
     font-family: "Open Sans", sans-serif;
-    width: 100%;
 }
 
-.app{
+#app{
     width: 100%;
 }
 
 .inner{
     width: 50%;
-    margin: auto;
+    margin: 0 auto;
+    position: relative;
 }
 
 .title{
@@ -37,26 +37,82 @@ body{
     color: #444;
 }
 
+/*.grid-container {*/
+    /*display: grid;*/
+    /*grid-template-columns: auto auto;*/
+    /*padding: 10px;*/
+    /*position: absolute;*/
+    /*margin: auto;*/
+    /*width: 100%;*/
+/*}*/
+
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto;
-    padding: 10px;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
+    padding-top: 10px;
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    min-width:625px;
+}
+
+.grid-item{
+    width: 100%;
+    min-width: 312px;
+}
+
+.grid-item-sm{
+    width: 100%;
+    min-width: 155px;
+}
+
+.grid-item ul {
+   line-height: 1.5em;
+    padding: 0 20px 0;
+    max-width: 200px;
 }
 
 .sub-grid-container {
     display: grid;
     grid-template-columns: auto auto;
+    padding: 10px;
+    margin: auto;
+    width: 100%;
+    overflow: hidden;
 }
 
 .form{
     color: #444;
     width: 100%;
+    padding: 10px;
 }
 
 .input{
+    display: inline-block;
+    height: 20px;
+    padding: 2px;
+    color: #444;
+    width: 94%;
+}
+
+.input-md{
+    display: inline-block;
+    height: 20px;
+    padding: 2px;
+    color: #444;
+    width: 82%;
+}
+
+
+.select-input{
     display: block;
-    width: 50%;
+    color: #444;
+    background: transparent;
+    height: 30px;
     margin: 4px 0 15px 0;
+    padding: 0;
+    width: 100%;
 }
 
 .form input[type = 'checkbox']{
@@ -64,7 +120,7 @@ body{
     width: 13px;
     height: 13px;
     padding: 0;
-    margin:0;
+    margin: 0 4px 0 0;
     vertical-align: bottom;
     position: relative;
     top: -1px;
@@ -73,19 +129,16 @@ body{
     outline: 1px solid #444;
     -moz-appearance:none;
     -webkit-appearance:none;
-    -o-appearance:none;
 }
 
 .form input[type = 'checkbox']:hover{
     outline: 1px solid #0074e4;
 }
 
-.form input[type='checkbox']:checked:after {
+.form input[type='checkbox']:checked:after{
     content: "\2713";
     color: #444;
     text-align: center;
-    position: absolute;
-    left: 2px;
 }
 
 .form .check{
@@ -102,16 +155,53 @@ body{
     margin: 4px 0 15px 0;
 }
 
-.input-lg{
-    display: inline-block;
+.amount-input{
+    display: block;
+    box-shadow:0 0 0 1px rgba(68, 68, 68, 0.5);
+    padding: 2px;
     margin: 4px 0 15px 0;
-    width: 30%;
+    color: #444;
+}
+.amount-input input {
+    border: 0;
+}
+
+.lg-sm-input{
+    margin: 4px 0 15px 0;
+}
+
+.double-amount-input-lg{
+    display: inline-block;
+    box-shadow:0 0 0 1px rgba(68, 68, 68, 0.5);
+    padding: 2px;
+    color: #444;
+    /*width: 348px;*/
+    width: 300px;
+}
+
+.double-amount-input-sm{
+    display: inline-block;
+    box-shadow:0 0 0 1px rgba(68, 68, 68, 0.5);
+    padding: 2px;
+    color: #444;
+    /*width: 140px;*/
+    width: 150px;
 }
 
 .input-sm{
-    display: inline-block;
-    margin: 4px 0 15px 0;
-    width: 20%;
+    width: 85%;
+    border: 0;
+    padding: 2px;
+    height: 20px;
+    color: #444;
+}
+
+.input-lg{
+    width: 85%;
+    border: 0;
+    padding: 2px;
+    height: 20px;
+    color: #444;
 }
 
 .form label{
@@ -226,4 +316,64 @@ body{
     background-color:#d9f0f9;
 }
 
+.chart-text {
+    font: 12px "Open Sans", sans-serif;
+    fill: #000;
+    -moz-transform: translateY(0.10em);
+    -ms-transform: translateY(0.10em);
+    -webkit-transform: translateY(0.10em);
+    transform: translateY(0.10em);
+}
 
+.chart-label{
+    font-size: 0.2em;
+    line-height: 1.4;
+    text-anchor: middle;
+    -moz-transform: translateY(-0.25em);
+    -ms-transform: translateY(-0.25em);
+    -webkit-transform: translateY(-0.25em);
+    transform: translateY(-0.25em);
+}
+
+.chart-number {
+    font-size: 0.4em;
+    text-transform: uppercase;
+    text-anchor: middle;
+    -moz-transform: translateY(0.7em);
+    -ms-transform: translateY(0.7em);
+    -webkit-transform: translateY(0.7em);
+    transform: translateY(0.7em);
+}
+
+.qualified-button {
+    display: block;
+    background-color: #0074e4;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    width: 80%;
+    height: 40px;
+    margin: 0 auto;
+}
+
+.qualified-button:hover{
+    background-color: #1b5098;
+    background: linear-gradient(to top,#0074e4,#1b5098);
+    background-repeat; repeat-x;
+    color: #fff;
+}
+
+.amount-input span{
+    float: right;
+    padding: 4px;
+}
+
+.rate-link{
+    float: right;
+    text-decoration: none;
+    color: #0074e4;
+}
+
+.rate-link:hover{
+    color: #62aef7;
+}
