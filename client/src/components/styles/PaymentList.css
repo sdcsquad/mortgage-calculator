@@ -1,0 +1,35 @@
+.list {
+    line-height: 1.5em;
+    padding: 0 20px 0;
+    max-width: 200px;
+    list-style-type: none;
+    color: #444;
+}
+
+.circle{
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.ci1{
+    background-color:#0074e4;
+}
+
+.ci2{
+    background-color:#62aef7;
+}
+
+.ci3{
+    background-color:#3390e9;
+}
+
+.ci4{
+    background-color:#1b5098;
+}
+
+.ci5{
+    background-color:#d9f0f9;
+}

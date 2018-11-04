@@ -17,7 +17,7 @@ describe('Payment List tests', () => {
       taxesChecked: true,
     };
     const wrapper = shallow(<PaymentList items={items} checked={checked}/>);
-    expect(wrapper.find('.list ul li b').get(0).props.children).toEqual(10000);
+    expect(wrapper.find('ul li b').get(0).props.children).toEqual(10000);
   });
 
 });

@@ -1,0 +1,23 @@
+.title{
+    border-bottom: 1px solid #cccccc;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.collapsible {
+    background-color: #ffffff;
+    color: #444;
+    padding: 4px;
+    width: 50%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1.5em;
+}
+
+#iconAngle{
+    float : right;
+    padding: 4px;
+    font-size: 1.5em;
+    color: #444;
+}

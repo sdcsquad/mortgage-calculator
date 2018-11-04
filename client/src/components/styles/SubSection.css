@@ -1,0 +1,30 @@
+.gridContainer {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
+    padding-top: 10px;
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    min-width:625px;
+}
+
+.gridItem{
+    width: 100%;
+    margin: 0 auto;
+    flex: 0;
+}
+
+.gridItemSm{
+    width: 100%;
+    min-width: 155px;
+}
+
+.subGridContainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+    margin: auto;
+    width: 100%;
+    overflow: hidden;
+}

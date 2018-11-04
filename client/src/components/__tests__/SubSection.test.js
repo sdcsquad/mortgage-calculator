@@ -45,7 +45,7 @@ describe('SubSection tests', () => {
 
   it('should have grid-container class', () => {
     const wrapper = shallow(<SubSection items={items} payments={payments} />);
-    expect(wrapper.hasClass('grid-container')).toBe(true);
+    expect(wrapper.hasClass('gridContainer')).toBe(true);
   });
 
   it('render form component', () =>{
