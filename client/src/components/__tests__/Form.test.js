@@ -14,7 +14,7 @@ describe('Form Component tests', () => {
     property_tax: 300,
     property_tax_percentage: 2,
     home_insurance: 100,
-    hoa_dues: 30
+    hoa_dues: 30,
   };
 
   const checked = {
@@ -24,7 +24,7 @@ describe('Form Component tests', () => {
 
   it('should render without throwing an error', () => {
     const wrapper = shallow(<Form item={item} checked={checked}/>);
-    expect(wrapper.find('form').exists()).toBe(true)
+    expect(wrapper.find('form').exists()).toBe(true);
   });
 
   it('renders a home price input', () => {

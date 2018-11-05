@@ -1,0 +1,17 @@
+.qualifiedButton {
+    display: block;
+    background-color: #0074e4;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    width: 80%;
+    height: 40px;
+    margin: 0 auto;
+}
+
+.qualifiedButton:hover{
+    background-color: #1b5098;
+    background: linear-gradient(to top,#0074e4,#1b5098);
+    background-repeat: repeat-x;
+    color: #fff;
+}

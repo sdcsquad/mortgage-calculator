@@ -19,7 +19,7 @@ describe('Payment List tests', () => {
 
   it('renders correct amount in chart', () => {
     const wrapper = shallow(<Chart items={items} monthlyPayment={monthlyPayment}/>);
-    expect(wrapper.find('text.chart-number').text()).toEqual("2500");
+    expect(wrapper.find('text.chartNumber').text()).toEqual("2500");
   });
 
 });

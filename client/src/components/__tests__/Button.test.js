@@ -6,7 +6,7 @@ describe('Mortgage Component tests', () => {
 
   it('should have qualified-button class', () => {
     const wrapper = shallow(<Button />);
-    expect(wrapper.hasClass('qualified-button')).toBe(true);
+    expect(wrapper.hasClass('qualifiedButton')).toBe(true);
   });
 
 });
