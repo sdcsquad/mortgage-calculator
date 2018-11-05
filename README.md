@@ -1,13 +1,12 @@
-# Project Name
+# Mortgage Calculator
 
-> Project description
+> Mortgage Calculator similar to Zillow's
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/team-frontend/nearby-homes
+  - https://github.com/team-frontend/image-carousel
+  - https://github.com/team-frontend/detailed-part
 
 ## Table of Contents
 
@@ -15,25 +14,11 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
 
-## Usage
-
-> Some usage instructions
-
-## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
-## Development
-
 ### Installing Dependencies
 
 From within the root directory:
 
-```sh
 npm install -g webpack
 npm install
-```
+
 
