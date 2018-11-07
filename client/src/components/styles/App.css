@@ -1,5 +1,18 @@
-.inner{
-    width: 50%;
+.zlwLayoutLg{
+    max-width: 1024px;
+}
+
+.zlwLayoutCenter {
     margin: 0 auto;
+}
+
+.mainCol {
+    display: inline-block;
     position: relative;
+    font-size: 14px;
+    font-family: "Open Sans", sans-serif;
+}
+
+.zlwLg {
+    width: 65%;
 }

@@ -11,7 +11,12 @@ class App extends React.Component {
       payments: {},
       paymentsPercentage:{},
       open: false,
-      popUpStatus: false,
+      popUpStatus: {
+        pmiBlock: false,
+        taxBlock: false,
+        insuranceBlock: false,
+        hoaBlock: false
+      },
       checked:{
         pmiChecked: true,
         taxesChecked: true,
@@ -30,7 +35,12 @@ class App extends React.Component {
 
   componentDidMount() {
     const id = 1;
-    fetch(`/api/homes/${id}/prices`)
+    fetch(`/api/homes/${id}/prices`, {
+      headers: {
+        'Content-Type': 'application/json',
+          'Accept': 'application/json'
+      }
+    })
       .then(res => res.json())
       .then((res) => {
         res[0].down_payment_percentage = 20;
@@ -190,18 +200,23 @@ class App extends React.Component {
   }
 
   handlePopUp(e) {
-    e.stopPropagation();
-    const {id} = e.currentTarget.children[1];
-    const popUpEl = document.getElementById(id);
-    popUpEl.classList.toggle('show');
-    const allPopUpEl = document.getElementsByClassName('popuptext');
-    for (let i = 0; i < allPopUpEl.length; i++) {
-      if (allPopUpEl[i].id !== id) {
-        allPopUpEl[i].classList.remove('show');
-      }
+    let {id} = e.currentTarget.children[0];
+    if(id === 'help1'){
+      id = 'pmiBlock';
+    }else if(id === 'help2'){
+      id = 'taxBlock';
+    }else if(id === 'help3'){
+      id = 'insuranceBlock';
+    }else if(id === 'help4'){
+      id = 'hoaBlock'
     }
+    let popUpStatus = Object.assign({}, this.state.popUpStatus);
+    for(let key in popUpStatus){
+      popUpStatus[key] = false;
+    }
+    popUpStatus[id] = !this.state.popUpStatus[id];
     this.setState({
-      popUpStatus: !this.state.popUpStatus,
+      popUpStatus: popUpStatus
     });
   }
 
@@ -235,13 +250,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className={styles.inner}>
-        <MortgageSection onClick={this.handleCollapse}/>
-        {this.state.open === true ?
-          <SubSection items={this.state.currentValues} payments={this.state.payments} paymentsPercentage={this.state.paymentsPercentage}
-                      onChangeHandler={this.handleChange}
-                      onClick={this.handlePopUp} selectedValue={this.state.selected} onSelectChange={this.handleSelectChange} checked={this.state.checked} onCheckHandler={this.handleCheckbox}/> : null}
-      </div>
+      <main className={[styles.zlwLayoutLg, styles.zlwLayoutCenter].join(' ')}>
+        <div>
+          <section className={[styles.mainCol, styles.zlwLg].join(' ')}>
+            <MortgageSection onClick={this.handleCollapse} />
+            {this.state.open === true ?
+              <SubSection items={this.state.currentValues} payments={this.state.payments} paymentsPercentage={this.state.paymentsPercentage}
+                          onChangeHandler={this.handleChange}
+                          onClick={this.handlePopUp} selectedValue={this.state.selected} onSelectChange={this.handleSelectChange} checked={this.state.checked} onCheckHandler={this.handleCheckbox} popStatus={this.state.popUpStatus}/> : null}
+          </section>
+        </div>
+      </main>
     );
   }
 }

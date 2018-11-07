@@ -1,3 +1,8 @@
+.donut {
+    margin: 0 auto;
+    width: 100%;
+}
+
 .chartText {
     font: 12px "Open Sans", sans-serif;
     fill: #000;
@@ -8,7 +13,7 @@
 }
 
 .chartLabel{
-    font-size: 0.2em;
+    font-size: 0.3em;
     line-height: 1.4;
     text-anchor: middle;
     -moz-transform: translateY(-0.25em);

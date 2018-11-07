@@ -6,7 +6,7 @@
 
 .input{
     display: inline-block;
-    height: 20px;
+    height: 24px;
     padding: 2px;
     color: #444;
     width: 80%;
@@ -14,10 +14,10 @@
 
 .inputMd{
     display: inline-block;
-    height: 20px;
+    height: 24px;
     padding: 2px;
     color: #444;
-    width: 80%;
+    width: 75%;
 }
 
 
@@ -106,7 +106,7 @@
     width: 80%;
     border: 0;
     padding: 2px;
-    height: 20px;
+    height: 24px;
     color: #444;
 }
 
@@ -114,7 +114,7 @@
     width: 80%;
     border: 0;
     padding: 2px;
-    height: 20px;
+    height: 24px;
     color: #444;
 }
 
@@ -151,8 +151,7 @@
     user-select: none;
 }
 
-.help .popuptext {
-    visibility: hidden;
+.popuptext {
     width: 250px;
     background-color: #444;
     color: #fff;
@@ -169,7 +168,7 @@
     margin-left: 10px;
 }
 
-.help .popuptext::after {
+.popuptext::after {
     content: " ";
     position: absolute;
     top: 50%;
@@ -178,12 +177,6 @@
     border-width: 5px;
     border-style: solid;
     border-color: transparent #444 transparent transparent;
-}
-
-.help .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s;
 }
 
 @-webkit-keyframes fadeIn {
@@ -197,8 +190,8 @@
 }
 
 /*.amountInput span{*/
-    /*float: right;*/
-    /*padding: 4px;*/
+/*float: right;*/
+/*padding: 4px;*/
 /*}*/
 
 .symbols{
