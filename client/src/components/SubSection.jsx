@@ -8,7 +8,7 @@ import styles from './styles/SubSection.css';
 const SubSection = props => (
   <div className={styles.gridContainer}>
     <div className={styles.gridItem}>
-      <Form item={props.items} onChangeHandler={props.onChangeHandler} onClick={props.onClick} selectedValue={props.selectedValue} onSelectChange={props.onSelectChange} checked={props.checked} onCheckHandler={props.onCheckHandler} />
+      <Form item={props.items} onChangeHandler={props.onChangeHandler} onClick={props.onClick} selectedValue={props.selectedValue} onSelectChange={props.onSelectChange} checked={props.checked} onCheckHandler={props.onCheckHandler} popStatus={props.popStatus} />
     </div>
     <div className={styles.gridItem}>
       <div className={styles.subGridContainer}>

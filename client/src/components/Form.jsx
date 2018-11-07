@@ -49,11 +49,13 @@ const Form = props => (
       </label>
       <a className={styles.help} onClick={props.onClick}>
         <i className="far fa-question-circle" id="help1"/>
-        <span className={styles.popuptext} id="pmi-block">
-          <b>PRIVATE MORTGAGE INSURANCE</b>
-          <br/>
-          Mortgage insurance is required primarily for borrowers with a down payment of less than 20% of the home's purchase price. It protects lenders against some or most of the losses that can occur when a borrower defaults on a mortgage loan.
-        </span>
+        {props.popStatus.pmiBlock === true ?
+          <span className={styles.popuptext} id="pmiBlock">
+              <b>PRIVATE MORTGAGE INSURANCE</b>
+              <br/>
+              Mortgage insurance is required primarily for borrowers with a down payment of less than 20% of the home's purchase price. It protects lenders against some or most of the losses that can occur when a borrower defaults on a mortgage loan.
+           </span>
+          : null}
       </a>
     </div>
     <div className={styles.checkboxDiv}>
@@ -70,11 +72,13 @@ const Form = props => (
             <span>Property tax</span>
             <a className={styles.help} onClick={props.onClick}>
               <i className="far fa-question-circle" id="help2"/>
-              <span className={styles.popuptext} id="tax-block">
-              <b>PROPERTY TAX</b>
-              <br/>
-              The mortgage payment calculator includes estimated property taxes. The value represents an annual tax on homeowners' property and the tax amount is based on the home's value. To convert an annual property tax in dollars to a percentage, divide the property tax by your home value and then multiply by 100.
-            </span>
+              {props.popStatus.taxBlock === true ?
+                <span className={styles.popuptext} id="taxBlock">
+                  <b>PROPERTY TAX</b>
+                  <br/>
+                  The mortgage payment calculator includes estimated property taxes. The value represents an annual tax on homeowners' property and the tax amount is based on the home's value. To convert an annual property tax in dollars to a percentage, divide the property tax by your home value and then multiply by 100.
+                </span>
+                : null}
             </a>
           </div>
           <div className={styles.lgSmInput}>
@@ -94,11 +98,13 @@ const Form = props => (
           Home insurance
           <a className={styles.help} onClick={props.onClick}>
             <i className="far fa-question-circle" id="help3"/>
-            <span className={styles.popuptext} id="insurance-block">
-            <b>HOMEOWNERS INSURANCE</b>
-            <br/>
-            Commonly known as hazard insurance, most lenders require insurance to provide damage protection for your home and personal property from a variety of events, including fire, lightning, burglary, vandalism, storms, explosions, and more. All homeowner's insurance policies contain personal liability coverage, which protects against lawsuits involving injuries that occur on and off your property.
-          </span>
+            {props.popStatus.insuranceBlock === true ?
+              <span className={styles.popuptext} id="insuranceBlock">
+                <b>HOMEOWNERS INSURANCE</b>
+                <br/>
+                Commonly known as hazard insurance, most lenders require insurance to provide damage protection for your home and personal property from a variety of events, including fire, lightning, burglary, vandalism, storms, explosions, and more. All homeowner's insurance policies contain personal liability coverage, which protects against lawsuits involving injuries that occur on and off your property.
+              </span>
+              : null}
           </a>
           <span className={styles.amountInput}>$
         <input type="text" name="home_insurance" pattern="[0-9]" value={props.item.home_insurance}
@@ -111,11 +117,13 @@ const Form = props => (
       HOA dues
       <a className={styles.help} onClick={props.onClick}>
         <i className="far fa-question-circle" id="help4"/>
-        <span className={styles.popuptext} id="hoa-block">
-           <b>HOMEOWNERS ASSOCIATION DUES</b>
-           <br/>
-          Typically, owners of condos or townhomes are required to pay homeowners association dues (known as HOA fees), to cover common amenities or services within the property such as garbage collection, landscaping, snow removal, pool maintenance, and hazard insurance.
-        </span>
+        {props.popStatus.hoaBlock === true ?
+          <span className={styles.popuptext} id="hoaBlock">
+             <b>HOMEOWNERS ASSOCIATION DUES</b>
+             <br/>
+            Typically, owners of condos or townhomes are required to pay homeowners association dues (known as HOA fees), to cover common amenities or services within the property such as garbage collection, landscaping, snow removal, pool maintenance, and hazard insurance.
+            </span>
+          : null}
       </a>
       <span className={styles.amountInput}>$
       <input type="text" name="hoa_dues" pattern="[0-9]" value={props.item.hoa_dues}
