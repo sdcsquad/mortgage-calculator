@@ -1,6 +1,8 @@
+DROP DATABASE IF EXISTS zillower;
 CREATE DATABASE zillower;
-
 USE zillower;
+
+DROP TABLE IF EXISTS zillower;
 
 CREATE TABLE mortgage(
     id INT NOT NULL AUTO_INCREMENT,
@@ -10,5 +12,3 @@ CREATE TABLE mortgage(
     hoa_dues INT NOT NULL,
     PRIMARY KEY (id)
 )
-
-
