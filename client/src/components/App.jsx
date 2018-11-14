@@ -6,7 +6,17 @@ import styles from './styles/App.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    const path = window.location.pathname.split('/');
+    console.log('path', path)
+    let id = path[2];
+    if (id[0]==='h'||id[0]==='H'){
+      let num = id.slice(4)
+      id = parseInt(num)
+    } else {
+      id = parseInt(id)
+    }
     this.state = {
+      id: id,
       currentValues: {},
       payments: {},
       paymentsPercentage:{},
@@ -34,8 +44,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const id = 1;
-    fetch(`/api/homes/${id}/prices`, {
+    const { id } = this.state;
+    fetch(`/api/mortgageCalculator/${id}`, {
       headers: {
         'Content-Type': 'application/json',
           'Accept': 'application/json'
