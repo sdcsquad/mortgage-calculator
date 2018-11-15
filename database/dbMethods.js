@@ -37,7 +37,7 @@ const update = (id, callback) => {
 
 
 const deleteItem = (id, callback) => {
-  const sql = 'DELETE FROM mortgage WHERE id = `${id}';
+  const sql = `DELETE FROM mortgage WHERE id = ${id}`;
   db.query(sql, (err, results, fields) => {
     if (err) {
       callback(err, null);
