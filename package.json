@@ -11,7 +11,7 @@
     "start": "nodemon server/index.js",
     "build": "webpack --mode production",
     "dev": "webpack -d --watch",
-    "seed": "node database/fakeData.js && mysql -u root <database/schema.sql && node database/seed.js",
+    "seed": "mysql -u root <database/schema.sql && node database/seed.js",
     "fake": "node database/fakeData.js",
     "test": "./node_modules/.bin/jest"
   },
@@ -33,7 +33,10 @@
     "eslint-plugin-jest": "^22.0.0",
     "express": "^4.16.4",
     "faker": "^4.1.0",
+    "file-system": "^2.2.2",
+    "json2csv": "^4.3.0",
     "mysql": "^2.16.0",
+    "pg": "^7.6.1",
     "react": "^16.6.0",
     "react-dom": "^16.6.0"
   },
