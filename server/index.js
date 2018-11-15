@@ -16,9 +16,8 @@ app.listen(port, () => {
   console.log(`listening at ${port}`);
 });
 
-app.get(`/api/mortgageCalculator/:id`, (req, res) => {
+app.get('/api/mortgageCalculator/:id', (req, res) => {
   let { id } = req.params;
-  console.log(req.params)
   db.retrieve(id, (err, data) => {
     if (err) {
       res.end(err);

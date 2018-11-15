@@ -7,27 +7,26 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     const path = window.location.pathname.split('/');
-    console.log('path', path)
-    let id = path[2];
-    if (id[0]==='h'||id[0]==='H'){
-      let num = id.slice(4)
-      id = parseInt(num)
+    let id = path[2].toString().toLowerCase();
+    if (id[0] === 'h') {
+      id = parseInt(id.slice(4), 10);
     } else {
-      id = parseInt(id)
+      id = parseInt(id, 10);
     }
+
     this.state = {
       id: id,
       currentValues: {},
       payments: {},
-      paymentsPercentage:{},
+      paymentsPercentage: {},
       open: false,
       popUpStatus: {
         pmiBlock: false,
         taxBlock: false,
         insuranceBlock: false,
-        hoaBlock: false
+        hoaBlock: false,
       },
-      checked:{
+      checked: {
         pmiChecked: true,
         taxesChecked: true,
       },
