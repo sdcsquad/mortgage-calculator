@@ -40,7 +40,8 @@
     "pg": "^7.6.1",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "read-last-lines": "^1.6.0"
+    "read-last-lines": "^1.6.0",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
