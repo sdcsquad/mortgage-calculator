@@ -1,17 +1,16 @@
-const mysql = require('mysql');
+// const mysql = require('mysql');
 
-const connection = mysql.createPool({
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  host: process.env.DB_HOST,
-});
+// const connection = mysql.createPool({
+//   user: 'root',
+//   database: 'zillower',
+//   password: '',
+// });
 
-connection.getConnection((err) => {
-  if (err) {
-    throw err;
-  }
-  console.log('Connected to mysql');
-});
+// connection.getConnection((err) => {
+//   if (err) {
+//     throw err;
+//   }
+//   console.log('Connected to mysql');
+// });
 
-module.exports = connection;
+// module.exports = connection;
