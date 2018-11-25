@@ -19,7 +19,7 @@ app.listen(port, () => {
 app.get('/api/mortgageCalculator/:id', (req, res) => {
   let { id } = req.params;
   let stringId = id.toString()
-  db.retrieve('20', (err, data) => {
+  db.retrieve(id, (err, data) => {
     if (err) {
       res.end(err);
     } else {
