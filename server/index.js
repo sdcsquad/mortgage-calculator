@@ -10,7 +10,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/homes/:homeId', express.static('public/dist'));
+app.use('/homes/:id', express.static('public/dist'));
 
 app.listen(port, () => {
   console.log(`listening at ${port}`);
@@ -18,7 +18,8 @@ app.listen(port, () => {
 
 app.get('/api/mortgageCalculator/:id', (req, res) => {
   let { id } = req.params;
-  db.retrieve(id, (err, data) => {
+  let stringId = id.toString()
+  db.retrieve('20', (err, data) => {
     if (err) {
       res.end(err);
     } else {
@@ -28,38 +29,38 @@ app.get('/api/mortgageCalculator/:id', (req, res) => {
   });
 });
 
-app.post('/api/mortgageCalculator/:id', (req, res) => {
-  const { id } = req.params;
-  db.add(id, (err, data) => {
-    if (err) {
-      res.end(err);
-    } else {
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(data));
-    }
-  });
-});
+// app.post('/api/mortgageCalculator/:id', (req, res) => {
+//   const { id } = req.params;
+//   db.add(id, (err, data) => {
+//     if (err) {
+//       res.end(err);
+//     } else {
+//       res.writeHead(200, { 'Content-Type': 'application/json' });
+//       res.end(JSON.stringify(data));
+//     }
+//   });
+// });
 
-app.put('/api/mortgageCalculator/:id', (req, res) => {
-  const { id } = req.params;
-  db.update(id, (err, data) => {
-    if (err) {
-      res.end(err);
-    } else {
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(data));
-    }
-  });
-});
+// app.put('/api/mortgageCalculator/:id', (req, res) => {
+//   const { id } = req.params;
+//   db.update(id, (err, data) => {
+//     if (err) {
+//       res.end(err);
+//     } else {
+//       res.writeHead(200, { 'Content-Type': 'application/json' });
+//       res.end(JSON.stringify(data));
+//     }
+//   });
+// });
 
-app.delete('/api/mortgageCalculator/:id', (req, res) => {
-  const { id } = req.params;
-  db.deleteItem(id, (err, data) => {
-    if (err) {
-      res.end(err);
-    } else {
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(data));
-    }
-  });
-});
+// app.delete('/api/mortgageCalculator/:id', (req, res) => {
+//   const { id } = req.params;
+//   db.deleteItem(id, (err, data) => {
+//     if (err) {
+//       res.end(err);
+//     } else {
+//       res.writeHead(200, { 'Content-Type': 'application/json' });
+//       res.end(JSON.stringify(data));
+//     }
+//   });
+// });

@@ -1,6 +1,4 @@
-CREATE SCHEMA if not exists zillower;
-
-CREATE TABLE if not exists zillower.data (
+CREATE TABLE if not exists datahaus (
   home_id INT NOT NULL,
   home_name TEXT NOT NULL,
   home_price INT NOT NULL,

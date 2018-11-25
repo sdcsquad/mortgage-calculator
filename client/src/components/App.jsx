@@ -47,19 +47,21 @@ class App extends React.Component {
     fetch(`/api/mortgageCalculator/${id}`, {
       headers: {
         'Content-Type': 'application/json',
-          'Accept': 'application/json'
       }
     })
       .then(res => res.json())
       .then((res) => {
-        res[0].down_payment_percentage = 20;
-        res[0].property_tax_percentage = ((res[0].property_tax / res[0].home_price) * 100).toFixed(2);
-        res[0].down_payment_amount = Math.floor(res[0].home_price * res[0].down_payment_percentage / 100);
-        res[0].interest_rate = 4.5;
-        res[0].years = 30;
-        res[0].PMI = 0;
+        console.log("View response");
+        console.log(res);
+        const firstRow = res.rows[0];
+        firstRow.down_payment_percentage = 20;
+        firstRow.property_tax_percentage = ((firstRow.property_tax / firstRow.home_price) * 100).toFixed(2);
+        firstRow.down_payment_amount = Math.floor(firstRow.home_price * firstRow.down_payment_percentage / 100);
+        firstRow.interest_rate = 4.5;
+        firstRow.years = 30;
+        firstRow.PMI = 0;
         this.setState({
-          currentValues: res[0],
+          currentValues: firstRow,
         }, () => {
           this.calculatePayments();
         });

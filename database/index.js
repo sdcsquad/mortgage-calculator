@@ -1,16 +1,18 @@
-// const mysql = require('mysql');
+const { Client } = require('pg');
 
-// const connection = mysql.createPool({
-//   user: 'root',
-//   database: 'zillower',
-//   password: '',
-// });
+const client = new Client({
+  port: 5432,
+  user: 'postgres',
+  password: 'enter',
+  database: 'postgres',
+});
 
-// connection.getConnection((err) => {
-//   if (err) {
-//     throw err;
-//   }
-//   console.log('Connected to mysql');
-// });
+client.connect((err) => {
+  if (err) {
+    console.error('connection error', err.message);
+  } else {
+    console.log('connected');
+  }
+});
 
-// module.exports = connection;
+module.exports = client;

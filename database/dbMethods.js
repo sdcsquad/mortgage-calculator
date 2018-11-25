@@ -1,8 +1,8 @@
-const db = require('./index.js');
+const client = require('./index.js');
 
 const retrieve = (id, callback) => {
-  const sql = `SELECT * FROM mortgage WHERE id=${id}`;
-  db.query(sql, (err, data) => {
+  const sql = `SELECT * FROM datahaus WHERE home_id=${id}`;
+  client.query(sql, (err, data) => {
     if (err) {
       callback(err, null);
     } else {
@@ -11,22 +11,22 @@ const retrieve = (id, callback) => {
   });
 };
 
-const add = (id, callback) => {
+const add = (data, callback) => {
   const sql = 'INSERT INTO mortgage (home_price, property_tax, home_insurance, hoa_dues) VALUES(?, ?, ?, ?)';
-  const data = [el.home_price, el.property_tax, el.home_insurance, el.hoa_dues]
-  db.query(sql, data , (err, data) => {
+  const values = [data.home_price, data.property_tax, data.home_insurance, data.hoa_dues];
+  db.query(sql, values, (err, results) => {
     if (err) {
       callback(err, null);
     } else {
-      callback(null, data);
+      callback(null, results);
     }
   });
 };
 
-const update = (id, callback) => {
+const update = (data, callback) => {
   const sql = 'UPDATE mortgage SET home_price = ?, property_tax = ?, home_insurance = ?, home_insurance = ?, hoa_dues = ? WHERE id = ?';
-  const data = [el.home_price, el.property_tax, el.home_insurance, el.hoa_dues, el.id]
-  db.query(sql, data , (err, results, fields) => {
+  const values = [data.home_price, data.property_tax, data.home_insurance, data.hoa_dues, data.id];
+  db.query(sql, values, (err, results) => {
     if (err) {
       callback(err, null);
     } else {
@@ -38,7 +38,7 @@ const update = (id, callback) => {
 
 const deleteItem = (id, callback) => {
   const sql = `DELETE FROM mortgage WHERE id = ${id}`;
-  db.query(sql, (err, results, fields) => {
+  db.query(sql, (err, results) => {
     if (err) {
       callback(err, null);
     } else {
@@ -47,5 +47,9 @@ const deleteItem = (id, callback) => {
   });
 };
 
-module.exports = { retrieve, add, update, deleteItem };
-
+module.exports = {
+  retrieve,
+  add,
+  update,
+  deleteItem,
+};
