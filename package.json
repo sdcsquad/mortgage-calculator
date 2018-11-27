@@ -11,6 +11,7 @@
     "start": "nodemon server/index.js",
     "build": "webpack --mode production",
     "dev": "webpack -d --watch",
+    "server":"babel-node server/pindex.js",
     "seed": "node database/seed.js && psql -U postgres <database/run_insert.sql",
     "test": "./node_modules/.bin/jest",
     "grunt": "grunt --verbose s3"
@@ -44,13 +45,15 @@
     "mysql": "^2.16.0",
     "newrelic": "^4.11.0",
     "pg": "^7.6.1",
+    "pug": "^2.0.3",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "read-last-lines": "^1.6.0",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
+    "@babel/core": "^7.1.6",
+    "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
