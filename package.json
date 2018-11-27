@@ -2,7 +2,7 @@
   "name": "mortgage-calculator",
   "version": "",
   "description": "",
-  "author": "Mona Bocharova",
+  "author": "Glory Kim",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
@@ -39,6 +39,7 @@
     "grunt-contrib-jshint": "^2.0.0",
     "grunt-s3": "^0.2.0-alpha.3",
     "json2csv": "^4.3.0",
+    "knex": "^0.15.2",
     "moment": "^2.22.2",
     "mysql": "^2.16.0",
     "newrelic": "^4.11.0",

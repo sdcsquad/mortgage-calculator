@@ -9,4 +9,4 @@ function randomID(context, events, done) {
 
 module.exports = {
   randomID,
-}
+};
