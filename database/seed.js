@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const tracer = require('dd-trace').init()
+
 const pathFile = path.join(__dirname, 'data.csv');
 
 const random = (min, max) => {
