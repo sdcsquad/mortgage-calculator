@@ -1,7 +1,7 @@
-const React = require('react') ;
-const SubSection = require('./SubSection.jsx') ;
-const MortgageSection = require('./MortgageSection.jsx') ;
-const styles = require('./styles/App.css') ;
+import React from 'react'
+import SubSection from './SubSection.jsx'
+import MortgageSection from './MortgageSection.jsx'
+import styles from './styles/App.css'
 
 class App extends React.Component {
   constructor(props) {

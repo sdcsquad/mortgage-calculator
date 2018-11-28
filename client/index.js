@@ -1,34 +1,23 @@
 const path  = require('path')
-const express = require('express');
-const React = require('react');
-const ReactDOM = require('react-dom/server');
-const serverBundle = require('../public/dist/server.js');
-const shane = require('./src/index.jsx')
+import express from 'express';
+
 const Template = require('./src/templates/html');
 const App = require('./src/templates/app')
 const Scripts = require('./src/templates/scripts')
+
+const Component = require('./src/server.jsx')
+const serverRender = require('./serverRender');
+
 
 const server = express();
 
 server.use('/homes', express.static(path.join(__dirname, '/../public/dist')));
 
 
-const renderComponents = (components, props = {}) => {
-  let component = React.createElement(components, props);
-  return ReactDOM.renderToString(component);
-};
-
 server.get('/', (req, res) => {
-  const components = renderComponents(shane)
-  res.end(Template(
-    'SDC DEMO',
-    App(components),
-    Scripts(Object.keys(shane))
-  ));
+  res.send('hello world');
 });
-
 server.listen(8080)
-
 
 
 

@@ -1,76 +1,51 @@
 const path = require('path');
 
 const nodeExternals = require('webpack-node-externals');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/public/dist');
 const SVR_DIR = path.join(__dirname, '/public');
 
-var isProduction = process.env.NODE_ENV === 'production';
-var productionPluginDefine = isProduction ? [
-  new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify('production')}})
-] : [];
-var clientLoaders = isProduction ? productionPluginDefine.concat([
-  new webpack.optimize.DedupePlugin(),
-  new webpack.optimize.OccurrenceOrderPlugin(),
-  new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }, sourceMap: false })
-]) : [];
-
-var commonLoaders = [
-  {
-    test: /\.json$/,
-    loader: 'json-loader'
-  }
-];
-
-
 module.exports = [
   {
-    entry: `${SRC_DIR}/index.jsx`,
+    entry: `${SRC_DIR}/server.jsx`,
     output: {
       path: DIST_DIR,
       filename: 'server.js',
       libraryTarget: 'commonjs2',
       publicPath: '/',
     },
-    target: 'node',
-    node: {
-      console: false,
-      global: false,
-      process: false,
-      Buffer: false,
-      __filename: false,
-      __dirname: false
+    resolve: {
+      extensions: ['.js', '.jsx']
     },
+    target: 'node',
+    devtool: 'source-map',
     externals: nodeExternals(),
     module: {
       rules: [
         {
           test: /\.css$/,
-          use: [
-            'isomorphic-style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1
-              }
-            },
-          ]
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: 'css-loader',
+          }),
         },
         {
-          test: /\.js$/,
-          loader: 'babel-loader'
-        },
-        {
-          test: /\.jsx?/,
-          include: SRC_DIR,
+          test: [/\.(js|jsx)$/],
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-react', '@babel/preset-env'],
+            },
           },
-        },
+        }
       ]
-    }
+    },
+    plugins: [
+      new ExtractTextPlugin('styles.css'),
+    ],
   },
   {
     entry: `${SRC_DIR}/index.jsx`,

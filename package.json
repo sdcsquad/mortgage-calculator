@@ -29,12 +29,14 @@
     }
   },
   "dependencies": {
-    "babel-register": "^6.26.0",
+    "@babel/register": "^7.0.0",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "dd-trace": "^0.7.0",
     "dotenv": "^6.1.0",
     "eslint-plugin-jest": "^22.0.0",
     "express": "^4.16.4",
+    "extract-text-webpack-plugin": "4.0.0-beta.0",
     "file-system": "^2.2.2",
     "grunt": "^1.0.3",
     "grunt-contrib-jshint": "^2.0.0",
@@ -66,6 +68,9 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
+    "babel-plugin-css-modules-transform": "^1.6.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
     "css-loader": "^1.0.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
@@ -80,7 +85,7 @@
     "jest-css-modules-transform": "^2.1.1",
     "regenerator-runtime": "^0.12.1",
     "style-loader": "^0.23.1",
-    "webpack": "^4.23.0",
+    "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2"
   }
 }
