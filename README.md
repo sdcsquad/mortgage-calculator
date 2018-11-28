@@ -1,6 +1,6 @@
 # Mortgage Calculator
 
-> Mortgage Calculator similar to Zillow's
+> This repo represents the mortgage calculator component for an online real estate database company.
 
 ## Related Projects
 

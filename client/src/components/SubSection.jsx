@@ -25,4 +25,3 @@ const SubSection = props => (
 );
 
 export default SubSection;
-

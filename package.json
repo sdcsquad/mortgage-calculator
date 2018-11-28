@@ -2,18 +2,19 @@
   "name": "mortgage-calculator",
   "version": "",
   "description": "",
-  "author": "Mona Bocharova",
+  "author": "Glory Kim",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "nodemon server/index.js",
-    "build": "webpack --mode production",
+    "start": "node client/index.js",
+    "build": "webpack -d",
+    "ssr": "NODE_ENV=production node client/index.js",
     "dev": "webpack -d --watch",
-    "seed": "mysql -u root <database/schema.sql && node database/seed.js",
-    "fake": "node database/fakeData.js",
-    "test": "./node_modules/.bin/jest"
+    "seed": "node database/seed.js && psql -U postgres <database/run_insert.sql",
+    "test": "./node_modules/.bin/jest",
+    "grunt": "grunt --verbose s3"
   },
   "jest": {
     "setupFiles": [
@@ -28,29 +29,48 @@
     }
   },
   "dependencies": {
+    "@babel/register": "^7.0.0",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "dd-trace": "^0.7.0",
     "dotenv": "^6.1.0",
     "eslint-plugin-jest": "^22.0.0",
     "express": "^4.16.4",
-    "faker": "^4.1.0",
+    "extract-text-webpack-plugin": "4.0.0-beta.0",
     "file-system": "^2.2.2",
+    "grunt": "^1.0.3",
+    "grunt-contrib-jshint": "^2.0.0",
+    "grunt-s3": "^0.2.0-alpha.3",
+    "isomorphic-style-loader": "^4.0.0",
     "json2csv": "^4.3.0",
+    "knex": "^0.15.2",
+    "memory-fs": "^0.4.1",
     "moment": "^2.22.2",
     "mysql": "^2.16.0",
+    "newrelic": "^4.11.0",
     "pg": "^7.6.1",
+    "prop-types": "^15.6.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "read-last-lines": "^1.6.0",
+    "require-from-string": "^2.0.2",
+    "styled-components": "^4.1.1",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-node-externals": "^1.7.2",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
+    "babel-plugin-css-modules-transform": "^1.6.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
     "css-loader": "^1.0.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
@@ -65,7 +85,7 @@
     "jest-css-modules-transform": "^2.1.1",
     "regenerator-runtime": "^0.12.1",
     "style-loader": "^0.23.1",
-    "webpack": "^4.23.0",
+    "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2"
   }
 }
