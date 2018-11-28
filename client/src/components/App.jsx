@@ -13,7 +13,6 @@ class App extends React.Component {
     } else {
       id = parseInt(id, 10);
     }
-
     this.state = {
       id: id,
       currentValues: {},

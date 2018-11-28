@@ -1,10 +1,10 @@
 const { Client } = require('pg');
 
 const client = new Client({
-  host: '13.57.255.50',
-  user: 'other_user',
-  password: '$password',
-  database: 'datahaus',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 client.connect((err) => {
