@@ -1,8 +1,8 @@
 import React from 'react';
 import PaymentList from './PaymentList.jsx';
 import Chart from './Chart.jsx';
-import Form from'./Form.jsx';
-import Button from'./Button.jsx';
+import Form from './Form.jsx';
+import Button from './Button.jsx';
 import styles from './styles/SubSection.css';
 
 const SubSection = props => (

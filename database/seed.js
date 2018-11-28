@@ -20,7 +20,7 @@ const fakeDataGenerator = () => {
       const insurance = random(400, 1000);
       const dues = random(100, 500);
       counter += 1;
-      data += `${id},${name},${price},${tax},${insurance}, ${dues}\n`;
+      data += `${id},${name},${price},${tax},${insurance},${dues}\n`;
     }
     fs.appendFileSync(pathFile, data);
   }

@@ -83,9 +83,10 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "jest-css-modules-transform": "^2.1.1",
+    "mini-css-extract-plugin": "^0.4.5",
     "regenerator-runtime": "^0.12.1",
     "style-loader": "^0.23.1",
-    "webpack": "^4.26.1",
+    "webpack": "^4.21.0",
     "webpack-cli": "^3.1.2"
   }
 }
