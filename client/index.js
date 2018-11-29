@@ -31,6 +31,11 @@ if(cluster.isMaster) {
   
   app.get('/api/mortgageCalculator/:id', (req, res) => {
     let { id } = req.params;
+    if (id>0 && id<10000000){
+      id = id
+    } else {
+      id = 1
+    }
     db.retrieve(id, (err, data) => {
       if (err) {
         res.end(err);
@@ -76,13 +81,4 @@ if(cluster.isMaster) {
       }
     });
   });
-
-
-
-
-
 }
-
-
-
-
